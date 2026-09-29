@@ -1,4 +1,8 @@
 const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const THEME_KEY='itis3140-theme';
+function setTheme(theme,save=false){const dark=theme==='dark';document.documentElement.dataset.theme=dark?'dark':'light';const button=$('#theme-toggle');if(button){button.setAttribute('aria-pressed',String(dark));button.setAttribute('aria-label',`Switch to ${dark?'light':'dark'} mode`);button.querySelector('.theme-glyph').textContent=dark?'☀':'☾';button.querySelector('.theme-label').textContent=dark?'Light mode':'Dark mode';}if(save)try{localStorage.setItem(THEME_KEY,dark?'dark':'light');}catch{}}
+setTheme(document.documentElement.dataset.theme);
+$('#theme-toggle').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',true);
 const KEY='itis3140-study-v1';let storageOK=true, saved={cards:{},plan:{},tests:[]};try{const s=JSON.parse(localStorage.getItem(KEY));if(s?.cards&&s?.plan&&Array.isArray(s.tests))saved=s;}catch{storageOK=false;}
 let mode='flash',topic=-1,filter='all',deck=[],idx=0,flipped=false,learn=null,match=null,test=null,timer=null,testConfig={count:25,format:'mixed'};
 const shuffled=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};

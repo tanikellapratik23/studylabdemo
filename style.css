@@ -1,6 +1,6 @@
 :root{--bg:#f5f7fb;--ink:#182441;--muted:#626e84;--line:#dee4ef;--blue:#3154dc;--blue-light:#edf1ff;--green:#16715c;--red:#ad413f;--white:#fff}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.55}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;transition:background .2s ease,color .2s ease}
 button,input,select,textarea{font:inherit}
 button,a,input,select,textarea{touch-action:manipulation}
 button{cursor:pointer;border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;padding:10px 16px;font-weight:600;transition:background .15s,transform .15s}
@@ -10,6 +10,15 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 a{color:var(--blue);text-decoration:none}
 a:hover{text-decoration:underline}
 header{height:82px;padding:0 4%;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.header-actions{display:flex;align-items:center;gap:16px}
+.theme-toggle{display:flex;align-items:center;gap:8px;padding:6px 7px 6px 11px;border-radius:999px;background:var(--bg);font-size:12px;letter-spacing:.1px;justify-content:center;box-shadow:inset 0 0 0 1px #fff8}
+.theme-toggle:hover{background:var(--blue-light);border-color:#b9c5e9}
+.theme-glyph{font-size:16px;line-height:1;color:var(--blue);width:17px}
+.theme-label{min-width:60px;text-align:left}
+.toggle-track{position:relative;width:34px;height:20px;border-radius:99px;background:#c5cede;box-shadow:inset 0 1px 2px #16213d20;transition:background .2s ease}
+.toggle-thumb{position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #12204a44;transition:transform .2s ease}
+[data-theme=dark] .toggle-track{background:var(--blue)}
+[data-theme=dark] .toggle-thumb{transform:translateX(14px);background:#111a2b}
 .brand{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:750;color:var(--ink);letter-spacing:-.5px}
 .logo{background:var(--blue);color:white;font-size:25px;border-radius:10px;width:40px;height:40px;display:grid;place-items:center}
 .course{font-size:13px;letter-spacing:1px;border-left:1px solid var(--line);margin-left:6px;padding-left:18px;color:var(--muted)}
@@ -144,6 +153,31 @@ footer{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;co
 footer span{margin-right:auto}
 #toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 22px;border-radius:10px;font-size:14px;box-shadow:0 4px 15px #0002;display:none;max-width:90%;z-index:20}
 .storage-warning{color:var(--red)}
+[data-theme=dark]{color-scheme:dark;--bg:#0d1424;--ink:#edf2ff;--muted:#a8b3c9;--line:#2a354a;--blue:#8da5ff;--blue-light:#202c50;--green:#69d1ae;--red:#ff918c;--white:#151e30}
+[data-theme=dark] body,[data-theme=dark] header,[data-theme=dark] aside{background:var(--bg)}
+[data-theme=dark] header,[data-theme=dark] aside{background:#111a2b}
+[data-theme=dark] button,[data-theme=dark] select,[data-theme=dark] .input,[data-theme=dark] kbd,[data-theme=dark] .stat,[data-theme=dark] .panel,[data-theme=dark] .flashcard,[data-theme=dark] .day-card{background:#151f32;color:var(--ink)}
+[data-theme=dark] button:hover,[data-theme=dark] #topics button:hover{background:#202c43}
+[data-theme=dark] .theme-toggle,[data-theme=dark] .exam-date strong,[data-theme=dark] .test-meta span,[data-theme=dark] #topics button{background:#1a2538}
+[data-theme=dark] .theme-toggle{box-shadow:inset 0 0 0 1px #ffffff08}
+[data-theme=dark] .theme-toggle:hover{background:#202c50;border-color:#516695}
+[data-theme=dark] .primary{background:#5876e8;border-color:#5876e8;color:#fff}
+[data-theme=dark] .primary:hover{background:#6c86ea;border-color:#6c86ea}
+[data-theme=dark] .text-button,[data-theme=dark] .text-button:hover,[data-theme=dark] .star,[data-theme=dark] .tabs button{background:transparent}
+[data-theme=dark] #topics button.active,[data-theme=dark] .option.selected,[data-theme=dark] .match-column button.chosen{background:var(--blue-light);color:var(--blue);border-color:var(--blue)}
+[data-theme=dark] .stat.progress-stat{background:#283a67}
+[data-theme=dark] .stat.progress-stat span{color:#cad4eb}
+[data-theme=dark] .flashcard:hover{background:#18243a;border-color:#6478a5}
+[data-theme=dark] .flashcard.answer,[data-theme=dark] .flashcard.answer:hover{background:#102b29;border-color:#357b6a}
+[data-theme=dark] .flashcard.answer .card-main h2{color:#82ddc1}
+[data-theme=dark] .success,[data-theme=dark] .option.correct,[data-theme=dark] .match-column button.matched,[data-theme=dark] .feedback{background:#15352f;color:#8bdfc5;border-color:#2e685a}
+[data-theme=dark] .danger,[data-theme=dark] .option.wrong,[data-theme=dark] .feedback.miss{background:#3b2026;color:#ffaaa4;border-color:#744049}
+[data-theme=dark] .tip,[data-theme=dark] .topic-quiz,[data-theme=dark] .day-card.current{background:#182442;border-color:#415889}
+[data-theme=dark] .tip p{color:#b8c4dc}
+[data-theme=dark] .badge.priority{color:#ffd980;background:#42371d}
+[data-theme=dark] .progress-track{background:#2a354a}
+[data-theme=dark] #toast{background:#edf2ff;color:#111827}
+[data-theme=dark] input::placeholder,[data-theme=dark] textarea::placeholder{color:#7f8ba3}
 @media(max-width:1100px){.layout{grid-template-columns:220px 1fr}
 aside{padding-left:18px;padding-right:14px}
 main{padding:28px 28px}
@@ -156,7 +190,10 @@ main{padding:28px 28px}
 }
 @media(max-width:780px){header{height:auto;min-height:72px;padding:15px 20px}
 .course{display:none}
+.header-actions{gap:8px}
 .exam-date{font-size:0;gap:0}
+.theme-toggle{padding:7px 8px}
+.theme-label{display:none}
 .layout{display:block}
 aside{min-height:0;border:0;border-bottom:1px solid var(--line);padding:12px 20px}
 aside>h2,aside>.small,aside>.section-label,.source-box{display:none}
